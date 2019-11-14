@@ -21,7 +21,7 @@ do
         body='{
             "uri": "/service_1/uri_1",
             "plugins": {
-                "proxy_rewrite": {
+                "proxy-rewrite": {
                     "uri": "/uri_1"
                 }
             },
