@@ -14,33 +14,37 @@ if [ ! $uri_count ]; then
     uri_count=10
 fi
 
+id=1
 for((i=1; i<=$service_count; i++));
 do
     for((j=1; j<=$uri_count; j++));
     do
         body='{
-            "uri": "/service_1/uri_1",
+            "uri": "/service_x/uri_x",
             "plugins": {
                 "proxy-rewrite": {
-                    "uri": "/uri_1"
+                    "uri": "/uri_x"
                 }
             },
             "upstream": {
                 "type": "roundrobin",
                 "nodes": {
-                    "39.97.63.215:80": 1
+                    "172.26.36.52:xx": 1
                 }
             }
         }'
 
         # echo "$body" | sed "s|/service_1/uri_1|/service_1/uri_2|"
-        body=${body/service_1/service_$i}
-        body=${body/uri_1/uri_$j}
-        body=${body/uri_1/uri_$j}
-        body=${body/215:80/215:80$j}
+        body=${body/service_x/service_$i}
+        body=${body/uri_x/uri_$j}
+        body=${body/uri_x/uri_$j}
 
-        echo curl -i http://127.0.0.1:9080/apisix/admin/routes/$i -X PUT -d "$body"
-        curl -i http://127.0.0.1:9080/apisix/admin/routes/$i -X PUT -d "$body"
+	port=`expr 80 + $j`
+        body=${body/:xx/:$port}
+
+        id=`expr $id + 1`
+	echo curl -i http://127.0.0.1:9080/apisix/admin/routes/$id -X PUT -d "$body"
+        curl -i http://127.0.0.1:9080/apisix/admin/routes/$id -X PUT -d "$body"
 
         echo ''
         echo ''
