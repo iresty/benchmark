@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -ex
 
 ./reset-gateway.sh
 
-./generate-routes.lua 10 1000 127.0.0.1
+./generate-routes.lua 10 1000 $@
 
 sleep 1
 

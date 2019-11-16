@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+#
+docker stop $(docker ps -a -q)
 
 pod_count=$1
 if [ ! $pod_count ]; then
