@@ -22,10 +22,8 @@ do
 end --do
 
 function request()
-    local n = 100
-
-    local service_id = math_random(n)
-    local uri_id = math_random(n)
+    local service_id = math_random(100)
+    local uri_id = math_random(10)
     local url = "/service_" .. service_id .. "/uri_" .. uri_id
     local header = {}
     local body = nil
