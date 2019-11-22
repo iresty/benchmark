@@ -21,11 +21,17 @@ do
     math.randomseed(seed)
 end --do
 
+local service_id = 0
+local uri_id = 0
+
 function request()
-    local service_id = math_random(100)
-    local uri_id = math_random(10)
+    service_id = service_id % 10
+    uri_id = uri_id % 300
+    service_id = service_id + 1
+    uri_id = uri_id + 1
+    
     local url = "/service_" .. service_id .. "/uri_" .. uri_id
-    local header = {}
+    local header = nil
     local body = nil
 
     return wrk_format("GET", url, header, body)

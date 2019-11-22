@@ -15,6 +15,7 @@ local up_count = arg[2] or 10
 local upstreams = {arg[3] or "127.0.0.1"}
 upstreams[2] = arg[4] or upstreams[1]
 
+local id = 0
 for i = 1, service_count do
     for j = 1, up_count do
         local idx = j % 2 + 1
@@ -33,11 +34,12 @@ for i = 1, service_count do
             }
         }
 
+        id = id + 1
         body = json.encode(body)
 
         local httpc = http.new()
-        local res, err = httpc:request_uri("http://127.0.0.1:9080/apisix/admin/routes", {
-            method = "POST",
+        local res, err = httpc:request_uri("http://172.24.225.28:9080/apisix/admin/routes/" .. id, {
+            method = "PUT",
             body = body,
             keepalive_pool = 10
         })

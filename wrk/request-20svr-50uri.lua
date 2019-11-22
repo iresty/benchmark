@@ -25,8 +25,8 @@ local service_id = 0
 local uri_id = 0
 
 function request()
-    service_id = service_id % 10
-    uri_id = uri_id % 100
+    service_id = service_id % 20
+    uri_id = uri_id % 50
     service_id = service_id + 1
     uri_id = uri_id + 1
     

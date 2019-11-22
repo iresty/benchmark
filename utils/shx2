@@ -1,0 +1,3 @@
+nohup wrk -s ../wrk/request-20svr-50uri.lua -t 6 -c 60 -d 20 http://172.24.225.30:9080/mmmm &
+nohup wrk -s ../wrk/request-20svr-50uri.lua -t 6 -c 60 -d 20 http://172.24.225.28:9080/mmmm &
+
